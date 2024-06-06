@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
+
+Route::get('form-login', [AuthController::class, 'formLogin'])->name('form-login');
+Route::post('login', [AuthController::class, 'login'])->name('login');
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('me', [AuthController::class, 'me'])->name('me');
+
+Route::resource('products', ProductController::class);
